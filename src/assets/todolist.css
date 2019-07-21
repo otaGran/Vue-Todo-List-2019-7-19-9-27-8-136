@@ -54,3 +54,7 @@ em {
     color: #cccccc;
     text-decoration: line-through;
 }
+
+#ToDoListItem input{
+    readonly:"readonly";
+}

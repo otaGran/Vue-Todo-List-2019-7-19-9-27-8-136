@@ -1,8 +1,8 @@
 <template>
     <div id="ToDoList">
         <TodoListHeader @addItem="addItem"></TodoListHeader>
-        <todo-list-item :n="index" :item="item"  v-for="(item,index) in todoListItem"></todo-list-item>
-        <todo-list-button></todo-list-button>
+        <todo-list-item @completed="completed"  :item="item"  v-for="(item) in filteredTodoListItems(todoListItems)"></todo-list-item>
+        <todo-list-button @clickAllButoon="clickAllButoon" @clickActiveButoon="clickActiveButoon" @clickCompleteButoon="clickCompleteButoon"></todo-list-button>
     </div>
 </template>
 
@@ -21,14 +21,58 @@
         },
         data() {
             return {
-                todoListItem: []
+                count:0,
+                todoListItems: [],
+                isActived: false,
+                isCompleted: false
             }
         },
         methods: {
             addItem : function(itemContent) {
-                this.todoListItem.push({content:itemContent, isChecked: false});
+                this.todoListItems.push({content:itemContent, isChecked: false,cindex:this.count++});
 
+            },
+            clickAllButoon : function () {
+                this.isActived=false;
+                this.isCompleted= false;
+            },
+            clickActiveButoon:function () {
+                this.isActived=true;
+                this.isCompleted= false;
+            },
+            clickCompleteButoon : function () {
+                this.isActived=false;
+                this.isCompleted= true;
+            },
+            completed:function (index) {
+                this.todoListItems[index].isChecked=!this.todoListItems[index].isChecked;
+
+
+            },
+            filteredTodoListItems: function (itemList) {
+                if(this.isActived){
+                    return itemList.filter(v=>{
+                        if(v.isChecked)
+                            return true;
+                        else
+                            return false;
+                    });
+                }else if(this.isCompleted){
+                    return  itemList.filter(v=>{
+                        if(!v.isChecked)
+                            return true;
+                        else
+                            return false;
+                    });
+                }else{
+                    return  itemList;
+                }
             }
+            
+
+        },
+        computed: {
+
         }
     }
 </script>
