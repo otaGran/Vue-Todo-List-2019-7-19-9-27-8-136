@@ -47,3 +47,10 @@ em {
 }
 
 
+.gray i{
+    color: #cccccc;
+}
+.gray span{
+    color: #cccccc;
+    text-decoration: line-through;
+}
