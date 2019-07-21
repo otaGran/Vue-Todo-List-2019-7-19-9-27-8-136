@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="ToDoList">
     <TodoListHeader></TodoListHeader>
     <todo-list-item v-for="n in 5"></todo-list-item>
     <todo-list-button></todo-list-button>
@@ -22,13 +22,13 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style src="./assets/todolist.css">
+/*#app {*/
+/*  font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
+/*  -webkit-font-smoothing: antialiased;*/
+/*  -moz-osx-font-smoothing: grayscale;*/
+/*  text-align: center;*/
+/*  color: #2c3e50;*/
+/*  margin-top: 60px;*/
+/*}*/
 </style>
