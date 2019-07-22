@@ -27,9 +27,8 @@ export default new Vuex.Store({
             state.todoListItems.push({content: itemContent, isChecked: false, cindex: state.count++});
         },
         completed(state, index) {
-
-            state.todoListItems[index].isChecked = !this.todoListItems[index].isChecked;
-
+            let test =  state.todoListItems[index].isChecked;
+            state.todoListItems[index].isChecked = !test;
         }
 
 
@@ -38,17 +37,11 @@ export default new Vuex.Store({
         todoItems(state) {
             if (state.isActived) {
                 return state.todoListItems.filter(v => {
-                    if (!v.isChecked)
-                        return true;
-                    else
-                        return false;
+                    return !v.isChecked;
                 });
             } else if (state.isCompleted) {
                 return state.todoListItems.filter(v => {
-                    if (v.isChecked)
-                        return true;
-                    else
-                        return false;
+                    return v.isChecked;
                 });
             } else {
                 return state.todoListItems;
