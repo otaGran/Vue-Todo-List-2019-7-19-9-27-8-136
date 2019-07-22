@@ -58,3 +58,7 @@ em {
 #ToDoListItem input{
     readonly:"readonly";
 }
+
+#ToDoListItem:nth-child(odd) {
+    background: #f4ecec;
+}

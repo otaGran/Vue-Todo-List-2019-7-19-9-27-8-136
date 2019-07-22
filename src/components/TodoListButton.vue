@@ -9,15 +9,15 @@
 <script>
     export default {
         name: "TodoListButton",
-        methods:{
-            clickAllButoon:function () {
-                this.$emit("clickAllButoon");
+        methods: {
+            clickAllButoon: function () {
+                this.$store.commit('setAll');
             },
-            clickActiveButoon:function () {
-                this.$emit("clickActiveButoon");
+            clickActiveButoon: function () {
+                this.$store.commit('setActived');
             },
-            clickCompleteButoon:function () {
-                this.$emit("clickCompleteButoon");
+            clickCompleteButoon: function () {
+                this.$store.commit('setComplete');
             }
 
         }
