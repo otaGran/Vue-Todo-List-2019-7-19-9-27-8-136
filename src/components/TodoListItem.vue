@@ -1,7 +1,7 @@
 <template>
     <div :class="{gray:item.isChecked}" id="ToDoListItem">
         <i>{{ n+1}}</i>
-        <input type="checkbox"  v-on:click="renderItem" v-model="item.isChecked">
+        <input @click.prevent="renderItem" type="checkbox" v-model="item.isChecked">
         <!--{{item.isChecked}}-->
         <span v-on:keydown.enter="finishInput" :contenteditable="isContenteditable" v-on:dblclick="dbclicked">{{item.content}}</span>
     </div>

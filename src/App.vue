@@ -1,5 +1,6 @@
 <template>
     <div id="ToDoList">
+        <TodoTitle></TodoTitle>
         <TodoListHeader></TodoListHeader>
 
         <todo-list-item :keys="index" :n="index" :item="item"
@@ -13,10 +14,12 @@
     import TodoListHeader from "@/components/TodoListHeader";
     import TodoListItem from "@/components/TodoListItem";
     import TodoListButton from "@/components/TodoListButton";
+    import TodoTitle from "./components/TodoTitle";
 
     export default {
         name: 'app',
         components: {
+            TodoTitle,
             TodoListButton,
             TodoListItem,
             TodoListHeader
