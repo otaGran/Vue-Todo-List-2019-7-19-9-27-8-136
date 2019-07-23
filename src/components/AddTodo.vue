@@ -19,9 +19,9 @@
         },
         methods: {
             addItem: function () {
-
+                this.$store.dispatch('postItem', this.itemContent)
                 // this.$emit("addItem",this.itemContent)
-                this.$store.commit('addItem', this.itemContent);
+                //this.$store.commit('addItem', this.itemContent);
                 this.itemContent = '';
             }
         }

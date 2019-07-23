@@ -1,33 +1,32 @@
 <template>
-    <div id="ToDoList">
-        <TodoTitle></TodoTitle>
-        <TodoListHeader></TodoListHeader>
-
-        <todo-list-item :keys="index" :n="index" :item="item"
-                        v-for="(item,index) in $store.getters.todoItems"></todo-list-item>
-        <todo-list-button></todo-list-button>
-    </div>
+    <router-view></router-view>
 </template>
 
 <script>
 
-    import TodoListHeader from "@/components/TodoListHeader";
+    import AddTodo from "@/components/AddTodo";
     import TodoListItem from "@/components/TodoListItem";
     import TodoListButton from "@/components/TodoListButton";
     import TodoTitle from "./components/TodoTitle";
+    import Welcome from "./components/Welcome"
+    import axios from 'axios'
 
     export default {
         name: 'app',
+        data() {
+            return {
+                getTest: ''
+            }
+        },
         components: {
             TodoTitle,
             TodoListButton,
             TodoListItem,
-            TodoListHeader
+            AddTodo,
+            Welcome
         },
-        data(){
-            return {
-                fc: 0
-            }
+        mounted() {
+            this.$router.push({path: "/123"})
         }
     }
 </script>
