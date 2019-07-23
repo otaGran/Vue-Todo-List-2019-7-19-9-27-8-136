@@ -4,6 +4,7 @@
         <input @click.prevent="renderItem" type="checkbox" v-model="item.isChecked">
         <!--{{item.isChecked}}-->
         <span v-on:keydown.enter="finishInput" :contenteditable="isContenteditable" v-on:dblclick="dbclicked">{{item.content}}</span>
+        <button @click="deleteItem">X</button>
     </div>
 </template>
 
@@ -28,6 +29,9 @@
             },
             finishInput: function () {
                 this.isContenteditable = false;
+            },
+            deleteItem:function () {
+                this.$store.dispatch('delete', this.item.id);
             }
         }
 

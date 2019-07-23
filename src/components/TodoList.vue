@@ -1,5 +1,12 @@
 <template>
     <div id="ToDoList">
+        <div id="sidebar">
+            <ol>
+                <router-link to="/myprofile" tag="li">MyProfile</router-link>
+                <router-link to="/todolist" tag="li">TodoList</router-link>
+            </ol>
+        </div>
+
         <button @click="goBack">Back</button>
         <span id="name">{{$route.params.key}}</span>
         {{getTest}}

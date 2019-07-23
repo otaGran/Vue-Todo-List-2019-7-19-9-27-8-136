@@ -2,7 +2,7 @@
     <div>
         <span>Welcome to TodoList</span>
         <span>
-        <input>
+        <input v-model="name">
         <button @click="gotoTodoList">Go to todoList</button>
 
     </span>
@@ -12,9 +12,14 @@
 <script>
     export default {
         name: "Welcome",
+        data(){
+            return{
+                name:''
+            }
+        },
         methods: {
             gotoTodoList() {
-                this.$router.push({name: 'todolist', params: {key: 'Alex'}})
+                this.$router.push({name: 'todolist', params: {key: this.name}})
             }
         }
 

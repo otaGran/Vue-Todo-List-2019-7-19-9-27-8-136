@@ -32,6 +32,9 @@ export default new Vuex.Store({
         },
         updateTodoList(state, postResponse) {
             state.todoListItems.push(...postResponse);
+        },
+        rerfeshTodoList(state, getResponse){
+            state.todoListItems = getResponse;
         }
 
 
@@ -56,7 +59,7 @@ export default new Vuex.Store({
 
 
             axios
-                .post('http://10.222.232.151:3001/todos', {"content": items, "ischecked": false})
+                .post('http://localhost:3001/todos', {"content": items, "ischecked": false})
                 .then(res => {
                     context.commit('updateTodoList', [res.data])
                 })
@@ -68,10 +71,10 @@ export default new Vuex.Store({
         },
         getItem(context) {
             axios
-                .get('http://10.222.232.151:3001/todos')
+                .get('http://localhost:3001/todos')
                 .then(
                     response => {
-                        context.commit('updateTodoList', response.data)
+                        context.commit('rerfeshTodoList', response.data)
                     })
                 .catch(function (error) { // 请求失败处理
                     alert(error);
@@ -79,13 +82,41 @@ export default new Vuex.Store({
         },
         putItem(context, id) {
             axios
-                .put('http://10.222.232.151:3001/todos/' + id, {
+                .put('http://localhost:3001/todos/' + id, {
                     "id": id,
                     "content": this.state.todoListItems[id - 1].content,
                     "isChecked": !this.state.todoListItems[id - 1].isChecked
                 })
                 .then(res => {
-                    context.commit('updateTodoList', [response.data])
+                    //context.commit('updateTodoList', [res.data])
+
+                    axios
+                        .get('http://localhost:3001/todos')
+                        .then(
+                            response => {
+                                context.commit('rerfeshTodoList', response.data)
+                            })
+                        .catch(function (error) { // 请求失败处理
+                            alert(error);
+                        });
+                })
+                .catch(function (error) { // 请求失败处理
+                    alert(error);
+                });
+        },
+        delete(context, id){
+            axios
+                .delete('http://localhost:3001/todos/'+id)
+                .then(res =>{
+                    axios
+                        .get('http://localhost:3001/todos')
+                        .then(
+                            response => {
+                                context.commit('rerfeshTodoList', response.data)
+                            })
+                        .catch(function (error) { // 请求失败处理
+                            alert(error);
+                        });
                 })
                 .catch(function (error) { // 请求失败处理
                     alert(error);
